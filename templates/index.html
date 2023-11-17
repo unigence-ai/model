@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Cervical Cancer Type Prediction</title>
+</head>
+<body class="bg-gray-100 py-20">
+    <div class="max-w-md mx-auto bg-white p-8 shadow-lg rounded-lg">
+        <h1 class="text-2xl mb-4 text-center"><i class="fas fa-upload text-blue-500"></i> Upload an Image</h1>
+        <form action="/" method="post" enctype="multipart/form-data" class="space-y-4">
+            <div class="flex items-center justify-center">
+                <label class="cursor-pointer">
+                    <input type="file" name="file" class="hidden">
+                    <span class="text-blue-500 border border-blue-500 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition">Choose File</span>
+                </label>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Predict</button>
+        </form>
+        {% if label is not none %}
+        <div class="mt-6 space-y-2">
+            <p><i class="fas fa-check-circle text-green-500"></i> Predicted Type: <strong>Type {{ label + 1 }}</strong> </p>
+            <p><i class="fas fa-chart-bar text-yellow-500"></i> Predicted Values:</p>
+            <ul class="list-disc pl-5">
+                <li>Type 1 Probability: {{ prediction[0][0] }}</li>
+                <li>Type 2 Probability: {{ prediction[0][1] }}</li>
+                <li>Type 3 Probability: {{ prediction[0][2] }}</li>
+            </ul>
+            <h2 class="text-xl"><i class="fas fa-info-circle text-blue-500"></i> نوع السرطان المكتشف: نوع {{ label + 1 }}</h2>
+            <h3 class="text-lg"><i class="fas fa-book text-purple-500"></i> وصف:</h3>
+            <p>{{ description }}</p>
+            <h3 class="text-lg"><i class="fas fa-cogs text-red-500"></i> الحلول المقترحة:</h3>
+            <p>{{ solution }}</p>
+        </div>   
+        {% endif %}
+
+ 
+      
+    </div>
+</body>
+</html>
